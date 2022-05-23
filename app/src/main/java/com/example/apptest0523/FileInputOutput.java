@@ -64,6 +64,7 @@ public class FileInputOutput extends AppCompatActivity {
                         }
 
                         filedataTV.setText(buffer.toString());
+                        reader.close();
 
 
 
