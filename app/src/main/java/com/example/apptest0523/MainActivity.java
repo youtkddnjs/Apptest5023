@@ -7,13 +7,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.apptest0523.utillity.PrintLog;
+
 public class MainActivity extends AppCompatActivity {
 
     Button fileinternal,fileexternal;
     Intent intent;
-
-
-
 
     View.OnClickListener nextActivity = new View.OnClickListener() {
         @Override
@@ -41,6 +40,9 @@ public class MainActivity extends AppCompatActivity {
 
         fileinternal.setOnClickListener(nextActivity);
         fileexternal.setOnClickListener(nextActivity);
+
+
+        PrintLog.PrintInfo("MainActivity");
 
 
     }//onCreate
