@@ -45,6 +45,7 @@ public class ScanCamera_SurfaceView extends android.view.SurfaceView implements 
     @Override
     public void surfaceChanged(@NonNull SurfaceHolder surfaceHolder, int i, int i1, int i2) {
         camera.startPreview();
+        ((ScanCamera) m_context).checkImage();
 
     }
 
