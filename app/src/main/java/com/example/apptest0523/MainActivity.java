@@ -1,18 +1,19 @@
 package com.example.apptest0523;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button fileinternal,fileexternal;
-    Intent intent;
-
-
+    Button fileinternal,fileexternal, scancamera;
 
 
     View.OnClickListener nextActivity = new View.OnClickListener() {
@@ -20,13 +21,18 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View view) {
             switch (view.getId()){
                 case R.id.fileinternal:
-                    intent = new Intent(MainActivity.this, FileInputOutput.class);
-                    startActivity(intent);
+                    Intent intent01 = new Intent(MainActivity.this, FileInputOutput.class);
+                    startActivity(intent01);
                     break;
                 case R.id.fileexternal:
-                    intent = new Intent(MainActivity.this, FileInputOutput_External.class);
-                    startActivity(intent);
+                    Intent intent02 = new Intent(MainActivity.this, FileInputOutput_External.class);
+                    startActivity(intent02);
                     break;
+                case R.id.scancamera:
+                    Intent intent03 = new Intent(MainActivity.this, ScanCamera.class);
+                    startActivity(intent03);
+                    break;
+
             }//switch
         }//onClick
     };//nextActivity
@@ -38,10 +44,39 @@ public class MainActivity extends AppCompatActivity {
 
         fileinternal = findViewById(R.id.fileinternal);
         fileexternal = findViewById(R.id.fileexternal);
+        scancamera = findViewById(R.id.scancamera);
 
         fileinternal.setOnClickListener(nextActivity);
         fileexternal.setOnClickListener(nextActivity);
+        scancamera.setOnClickListener(nextActivity);
 
+
+        //권한 요청
+        int checkPermissionResult = checkSelfPermission(Manifest.permission.CAMERA);
+        if(checkPermissionResult == PackageManager.PERMISSION_DENIED){
+            String[] permissions = new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
+            requestPermissions(permissions, 10);
+        }
 
     }//onCreate
+
+    //권한 요청 결과 메소드
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        switch (requestCode){
+
+            case 10:
+                if(grantResults[0] == PackageManager.PERMISSION_DENIED || grantResults[1] == PackageManager.PERMISSION_DENIED){
+                    Toast.makeText(this, "권한 설정 하세요.", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(this, "권한 설정 되었음.", Toast.LENGTH_SHORT).show();
+                }
+                break;
+
+        }//switch (requestCode)
+
+    }//onRequestPermissionsResult
+
 }//MainActivity
