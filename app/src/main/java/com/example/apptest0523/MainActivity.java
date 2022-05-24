@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.apptest0523.utillity.PrintLog;
+
 public class MainActivity extends AppCompatActivity {
 
     Button fileinternal,fileexternal, scancamera;
@@ -57,6 +59,9 @@ public class MainActivity extends AppCompatActivity {
             String[] permissions = new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
             requestPermissions(permissions, 10);
         }
+
+        PrintLog.PrintInfo("MainActivity");
+
 
     }//onCreate
 
