@@ -11,4 +11,14 @@
     android:layout_centerInParent="true"
     android:src="@drawable/ic_baseline_crop_free_150"/>
 
+    <ImageView
+        android:id="@+id/changeimage"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/ic_baseline_crop_rotate_24"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="16dp"
+        />
+
 </RelativeLayout>
